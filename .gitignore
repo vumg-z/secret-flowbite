@@ -1,6 +1,9 @@
 # Ignore node_modules directory
 node_modules/
 
+# Except for this specific file
+!/node_modules/flowbite/dist/flowbite.min.js
+
 # Ignore npm's log files and debugging files
 npm-debug.log
 yarn-error.log
