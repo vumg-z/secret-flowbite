@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <script src="./paperjs-v0.12.17/dist/paper-full.min.js"></script>
+  <script type="text/javascript">
+    window.onload = function () {
+      // Tu SVG como una cadena (asegúrate de que todos los caracteres estén correctamente escapados)
+      var mySVG1 = `<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89" width="50" height="50">
+        <title>&lt;Path&gt;</title>
+        <style>
+        .s0 {
+            fill: #F8B4AC
+        }
+        </style>
+        <path id="&lt;Path&gt;" class="s0"
+        d="m62.4 70c15-10.5 26.8-24.7 25.5-41.9-0.3-4-1.5-8.1-4.1-11.1-3.5-4-8.9-5.7-14.1-5.6-8.4 0.2-16.3 4.5-22.3 10.3-6.1 5.9-10.5 13.1-15 20.2 1-10.6-0.8-21.4-5.1-31.1-2-4.5-5.2-9.3-10.1-10.1-6.3-1.2-11.8 4.9-14.1 10.9-3.2 8.3-3.4 17.8-0.4 26.2 6.3 17.5 16.7 32.3 21.7 50.7 11.1-3.5 25.6-9.8 38-18.5z" />
+        </svg>`;
+
+      var mySVG2 = `<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87 105" width="50" height="50">
+            <title>&lt;Path&gt;</title>
+            <style>
+                .s0 {
+                    fill: #F8B4AC
+                }
+            </style>
+            <path id="&lt;Path&gt;" class="s0"
+                d="m85.7 11.3c-1.2-5.2-5-10.3-10.3-11.1-8.6-1.4-16.8 8-20 15-5.8 13.3-5.5 27-8.6 40.7-7.4-14.5-10.4-30.3-22.8-42-9-8.5-21.5-12.3-23.5 3.5-0.6 4.7 0.5 9.5 1.8 14.1 8 27.9 24.2 52 44.1 72.8 0.4 0.4 0.9 0.8 1.4 0.7 0.3-0.1 0.6-0.4 0.8-0.6 15.8-18.7 26.8-40.7 32.6-64.4 2.3-9 6.4-19 4.5-28.5q0-0.1 0-0.2z" />
+        </svg>`;
+
+      // Function to apply animations to the SVGs
+      function applyAnimation(canvasId, svgString) {
+        paper.setup(canvasId);
+        paper.project.importSVG(svgString, function (item) {
+          item.scale(.5);
+          item.position = paper.view.center;
+          item.onFrame = function (event) {
+            var scaleFactor = 1 + 0.005 * Math.sin(event.time * 8);
+            item.scale(scaleFactor / item.scaling.x);
+          };
+        });
+      }
+
+      // Apply animations to each SVG on respective canvases
+      applyAnimation('canvas1', mySVG1);
+      applyAnimation('canvas2', mySVG2);
+    };
+  </script>
+  <style>
+    .custom-bg {
+      background-color: #48495D;
+    }
+
+    .pulsating-svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    @font-face {
+      font-family: 'Handlee';
+      src: url('fonts/Handlee-Regular.ttf') format('truetype');
+    }
+
+    .header {
+      font-family: 'Handlee', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="custom-bg text-white p-4">
+    <div class="flex justify-center items-center">
+      <!-- Canvas for the first SVG -->
+      <canvas id="canvas1" class="pulsating-svg" resize></canvas>
+      <span class="header mx-8 text-2xl">SECRETO</span>
+      <!-- Canvas for the second SVG -->
+      <canvas id="canvas2" class="pulsating-svg" resize></canvas>
+    </div>
+  </nav>
+
+  <!-- body -->
+
+  <!-- landing card -->
+
+  <div class="m-2">
+
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <ul
+        class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
+        id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+        <li class="mr-2">
+          <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about"
+            aria-selected="true"
+            class="inline-block p-4 text-blue-600 rounded-tl-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">About</button>
+        </li>
+        <li class="mr-2">
+          <button id="services-tab" data-tabs-target="#services" type="button" role="tab" aria-controls="services"
+            aria-selected="false"
+            class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300">Services</button>
+        </li>
+        <li class="mr-2">
+          <button id="statistics-tab" data-tabs-target="#statistics" type="button" role="tab" aria-controls="statistics"
+            aria-selected="false"
+            class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300">Facts</button>
+        </li>
+      </ul>
+      <div id="defaultTabContent">
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="about" role="tabpanel"
+          aria-labelledby="about-tab">
+          <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Powering innovation &
+            trust at 200,000+ companies worldwide</h2>
+          <p class="mb-3 text-gray-500 dark:text-gray-400">Empower Developers, IT Ops, and business teams to collaborate
+            at high velocity. Respond to changes and deliver great customer and employee service experiences fast.</p>
+          <a href="#"
+            class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700">
+            Learn more
+            <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 9 4-4-4-4" />
+            </svg>
+          </a>
+        </div>
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
+          aria-labelledby="services-tab">
+          <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">We invest in the world’s
+            potential</h2>
+          <!-- List -->
+          <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
+            <li class="flex space-x-2 items-center">
+              <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+              </svg>
+              <span class="leading-tight">Dynamic reports and dashboards</span>
+            </li>
+            <li class="flex space-x-2 items-center">
+              <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+              </svg>
+              <span class="leading-tight">Templates for everyone</span>
+            </li>
+            <li class="flex space-x-2 items-center">
+              <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+              </svg>
+              <span class="leading-tight">Development workflow</span>
+            </li>
+            <li class="flex space-x-2 items-center">
+              <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+              </svg>
+              <span class="leading-tight">Limitless business automation</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="statistics" role="tabpanel"
+          aria-labelledby="statistics-tab">
+          <dl
+            class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+            <div class="flex flex-col">
+              <dt class="mb-2 text-3xl font-extrabold">73M+</dt>
+              <dd class="text-gray-500 dark:text-gray-400">Developers</dd>
+            </div>
+            <div class="flex flex-col">
+              <dt class="mb-2 text-3xl font-extrabold">100M+</dt>
+              <dd class="text-gray-500 dark:text-gray-400">Public repositories</dd>
+            </div>
+            <div class="flex flex-col">
+              <dt class="mb-2 text-3xl font-extrabold">1000s</dt>
+              <dd class="text-gray-500 dark:text-gray-400">Open source projects</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+</body>
+
+</html>
