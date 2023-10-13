@@ -38,7 +38,7 @@
           item.scale(.5);
           item.position = paper.view.center;
           item.onFrame = function (event) {
-            var scaleFactor = 1 + 0.005 * Math.sin(event.time * 8);
+            var scaleFactor = 1 + 0.005 * Math.sin(event.time * 20);
             item.scale(scaleFactor / item.scaling.x);
           };
         });
@@ -231,7 +231,7 @@
       <a href="#"
         class="mx-2 block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div class="flex items-center space-x-4">
-          <img class="w-10 h-10 rounded-full" src="./avatars/avatar1.jfif" alt="">
+          <img class="w-10 h-10 rounded-full" src="./avatars/avatar6.jfif" alt="">
           <div class="font-medium dark:text-white">
             <div>Jese Leos</div>
             <div class="text-sm text-gray-500 dark:text-gray-400">Joined in August 2014</div>
