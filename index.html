@@ -38,7 +38,7 @@
           item.scale(.5);
           item.position = paper.view.center;
           item.onFrame = function (event) {
-            var scaleFactor = 1 + 0.005 * Math.sin(event.time * 20);
+            var scaleFactor = 1 + 0.005 * Math.sin(event.time * 5);
             item.scale(scaleFactor / item.scaling.x);
           };
         });
